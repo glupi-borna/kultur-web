@@ -3,8 +3,6 @@
         body, html {
             background: black;
             color: white;
-            font-family: sans-serif;
-            font-size: 4.5vw;
             overflow: hidden;
         }
         body {
@@ -14,9 +12,25 @@
             flex-flow: row nowrap;
             justify-content: center;
             align-items: center;
+            text-align: center;
+            letter-spacing: 1vw;
+        }
+        .logo {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0.2;
+            width: 100vmin;
+        }
+        .logo-text {
+/tmp/dnd_file/kultur-logo-1.svg            font-family: sans-serif;
+            font-size: 9.5vmin;
+            font-weight: 900;
         }
     </style>
 </head>
 <body>
-    KULTUR
+    <img class="logo" src="assets/kultur-logo-1.svg" />
+    <span class="logo-text">KULTUR</span>
 </body>
