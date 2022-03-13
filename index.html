@@ -3,34 +3,78 @@
         body, html {
             background: black;
             color: white;
-            overflow: hidden;
-        }
-        body {
-            display: flex;
-            width: 100vw;
-            height: 100vh;
-            flex-flow: row nowrap;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            letter-spacing: 1vw;
-        }
-        .logo {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            opacity: 0.2;
-            width: 100vmin;
-        }
-        .logo-text {
             font-family: sans-serif;
-            font-size: 9.5vmin;
-            font-weight: 900;
         }
+        header {
+            display: flex;
+            flex-flow: row nowrap;
+            align-items: center;
+            padding: 24px;
+            user-select: none;
+        }
+        header img {
+            width: 20vw;
+            max-width: 256px;
+            margin-right: 32px;
+        }
+        header h1 { font-size: 4vw; }
+        main {
+            max-width: 90vw;
+            width: 80ch;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 2em;
+            padding: 2em;
+            background: #fff1;
+            color: #fffc;
+            box-sizing: border-box;
+            font-family: serif;
+        }
+        h1, h2, h3, h4, h5, h6 { margin: 0 }
+        h1, h2, h3, h4 { letter-spacing: 0.25em; font-weight: 900; }
+        h1 { letter-spacing: 1em; font-size: 64px; }
+        h2 { font-size: 48px; }
+        h3 { font-size: 24px; }
+        h4 { font-size: 20px; }
+        p { font-size: 18px; line-height: 1.4em }
     </style>
 </head>
 <body>
-    <img class="logo" src="assets/kultur-logo-1.svg" />
-    <span class="logo-text">KULTUR</span>
+    <header>
+        <img src="assets/kultur-logo-1.svg" />
+        <h1>KULTUR</h1>
+    </header>
+    <main>
+        <article>
+            <time datetime="2022-03-13">13. 3. 2021.</time>
+            <h2>Naslov</h2>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                sed do eiusmod tempor incididunt ut labore et dolore magna
+                aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                Duis aute irure dolor in reprehenderit in voluptate velit
+                esse cillum dolore eu fugiat nulla pariatur.
+                Excepteur sint occaecat cupidatat non proident,
+                sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+            <p>
+                Viverra mauris in aliquam sem fringilla ut morbi tincidunt.
+                Ornare arcu dui vivamus arcu felis bibendum. Aliquet sagittis
+                id consectetur purus. Malesuada fames ac turpis egestas maecenas.
+                Id aliquet risus feugiat in ante metus dictum. Vitae congue
+                mauris rhoncus aenean vel elit scelerisque. Enim praesent
+                elementum facilisis leo vel fringilla est ullamcorper eget.
+                Tortor aliquam nulla facilisi cras fermentum odio eu feugiat
+                pretium. Erat imperdiet sed euismod nisi porta lorem. Ultrices sagittis
+                orci a scelerisque purus semper eget. Ultrices sagittis orci a
+                scelerisque purus semper eget. Feugiat vivamus at augue eget arcu.
+                Ultrices neque ornare aenean euismod elementum nisi. Nibh cras pulvinar
+                mattis nunc sed blandit libero volutpat sed. Vitae elementum curabitur
+                vitae nunc sed velit dignissim sodales ut. Arcu dui vivamus arcu felis
+                bibendum ut tristique et egestas. Lobortis feugiat vivamus at augue
+                eget arcu dictum. Netus et malesuada fames ac turpis.
+            </p>
+        </article>
+    </main>
 </body>
