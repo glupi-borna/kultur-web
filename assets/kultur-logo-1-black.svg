@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="85.866592mm"
+   height="66.481216mm"
+   viewBox="0 0 85.866592 66.481216"
+   version="1.1"
+   id="svg848"
+   inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)"
+   sodipodi:docname="kultur-logo-1-black.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview850"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="0.45255331"
+     inkscape:cx="106.06485"
+     inkscape:cy="196.66191"
+     inkscape:window-width="1461"
+     inkscape:window-height="1032"
+     inkscape:window-x="182"
+     inkscape:window-y="68"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs845" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-77.052198,-96.322795)">
+    <path
+       id="path44504"
+       style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.999999px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 347.56055,367.12891 98.08398,169.88476 98.08203,-169.88476 z m 35.24218,20.3457 h 125.6836 l -62.8418,108.8457 z"
+       transform="matrix(0.26458333,0,0,0.26458333,2.0753807,20.719143)" />
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 109.82431,107.4508 8.08581,14.00483 8.08529,-14.00483 z"
+       id="path44508"
+       transform="translate(2.0753807,20.719143)" />
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 74.976817,75.603652 v 5.383136 h 7.65845 l 6.216157,10.766266 h 58.117386 l 6.21616,-10.766266 h 7.65844 v -5.383136 h -10.76626 l -6.21616,10.766269 H 91.959244 L 85.743086,75.603652 Z"
+       id="path44502"
+       transform="translate(2.0753807,20.719143)" />
+  </g>
+</svg>

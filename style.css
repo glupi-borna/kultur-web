@@ -1,0 +1,237 @@
+html {
+    --fg: black;
+    --bg: white;
+    --link: #666;
+    --img-filter: none;
+    --img-filter-alt: invert();
+}
+
+html.alt {
+    --fg: black;
+    --bg: white;
+    --link: #aaa;
+    --img-filter: invert();
+    --img-filter-alt: none;
+}
+
+@media (prefers-color-scheme: dark) {
+    html {
+        --fg: white;
+        --bg: black;
+        --link: #aaa;
+        --img-filter: invert();
+        --img-filter-alt: none;
+    }
+
+    html.alt {
+        --fg: black;
+        --bg: white;
+        --link: #666;
+        --img-filter: none;
+        --img-filter-alt: invert();
+    }
+}
+
+html, body {
+    font-family: sans;
+    padding: 0;
+    margin: 0;
+    color: var(--fg);
+    background: var(--bg);
+    min-height: 100vh;
+    transition: background 0.25s, color 0.25s;
+}
+
+body > * {
+    max-width: 80ch;
+    margin: 0 auto;
+}
+
+main {
+    padding: 1rem;
+}
+
+a, button { cursor: pointer }
+a:hover, button:hover { color: var(--fg) }
+
+h1 { letter-spacing: 1ch }
+
+p, h1, h2, h3, h4, h5, h6 {
+    padding: 0;
+    margin: 0;
+}
+
+header {
+    padding: 1rem;
+}
+
+header > a {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    text-decoration: none;
+    color: var(--fg);
+    margin-top: .5rem;
+    margin-bottom: 1.5rem;
+}
+
+header > a img {
+    height: 3.5rem;
+    margin-right: 1.75rem;
+    filter: var(--img-filter);
+}
+
+@media (max-width: 600px) {
+    header > a img { height: 2.5rem; margin-right: .75rem; }
+    header > a h1 { font-size: 1.3rem }
+}
+
+header nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+
+    display: flex;
+    flex-flow: row nowrap;
+    border-top: 1px solid var(--link);
+}
+
+header nav ul li { display: inline-block; }
+
+header nav ul a {
+    position: relative;
+    display: inline-block;
+    padding: 1rem 0;
+    margin: 0 .5rem;
+    text-decoration: none;
+    font-weight: bold;
+    color: var(--link);
+}
+
+@media (max-width: 400px) {
+    header nav ul a { font-size: 12px }
+}
+
+header nav ul a::after {
+    content: "";
+    left: 50%; right: 50%; top: -3px;
+    border-top: 5px var(--fg) solid;
+    position: absolute;
+    transition: border-top 0.125s, left 0.125s, right 0.125s;
+}
+
+header nav ul a.current { color: var(--fg) }
+header nav ul a.current::after {
+    left: 0; right: 0;
+}
+
+.context {
+    width: max-content;
+    max-width: none;
+    position: fixed;
+    z-index: 1000;
+}
+
+.context .menu {
+    display: flex;
+    flex-flow: column nowrap;
+    border: 1px solid var(--link);
+    background: var(--bg);
+}
+
+.context .menu button {
+    position: relative;
+    display: block;
+    text-align: right;
+    background: var(--bg);
+    color: var(--link);
+    border: none;
+    font-weight: bold;
+    font-size: 1rem;
+    padding: .25rem .5rem;
+    padding-left: 1em;
+    margin: .25rem 0;
+}
+
+.context .menu button:hover { color: var(--fg); }
+
+.context .menu button.current::after {
+    position: absolute;
+    content: "";
+    top: 0; bottom: 0; right: -3px;
+    border-right: 5px var(--fg) solid;
+}
+
+.spacer { flex: 1 1 0; }
+
+a[action=language] { white-space: nowrap; }
+a[action=language]::after, a[action=language]::before {
+    position: static;
+    display: inline-block;
+    height: 1em;
+    line-height: 1;
+    padding: .125em;
+    transition: 0.125s color, 0.125s background, 0.125s border-color;
+}
+a[action=language]::before {
+    content: "A";
+    border-radius: .25em 0 0 .25em;
+    border: 1px solid currentColor;
+    border-right: none;
+}
+a[action=language]::after {
+    content: "文";
+    border-radius: 0 .25em .25em 0;
+    background: var(--link);
+    color: var(--bg);
+    border: 1px solid var(--link);
+    border-left: none;
+}
+a[action=language]:hover::after {
+    background: var(--fg);
+    border-color: var(--fg);
+}
+
+
+a[action=theme] .theme-button {
+    border-radius: .25em;
+    background: currentColor;
+    padding: .125em;
+    height: 1em;
+    border: 1px solid currentColor;
+    transition: 0.125s color, 0.125s background, 0.125s border-color;
+}
+
+a[action=theme] img {
+    filter: var(--img-filter-alt);
+    padding: .125em;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+article time, article cite {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--link);
+}
+
+article p, article h2 {
+    margin-top: .5rem;
+    margin-bottom: 1em;
+}
+
+article p { font-family: serif }
+
+article {
+    padding-left: .5rem;
+    border-left: 1px solid var(--link);
+}
+
+article h2 { position: relative }
+article h2::before {
+    content: "";
+    position: absolute;
+    content: "";
+    top: 0; bottom: 0; left: calc(-3px - .5rem);
+    border-left: 5px var(--fg) solid;
+}
