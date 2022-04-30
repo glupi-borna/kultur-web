@@ -4,7 +4,6 @@ from sys import argv
 from os import path
 from dataclasses import dataclass, field
 from datetime import date, datetime
-import textwrap
 from babel.dates import format_date
 from json import dumps
 from slugify import slugify
@@ -12,44 +11,15 @@ from slugify import slugify
 root = path.dirname(__file__)
 args = argv[1:]
 
-def dedent(text):
-    return textwrap.dedent(text.strip("\n"))
-
-
 def page_wrapper(page):
     return f"""<!DOCTYPE html>
     <html>
         <head>
-            <meta name="viewport" content="width=device-width, initial-scale=1" />
-            <link href="style.css" rel="stylesheet" />
-            <script src="main.js"></script>
+            <inject post-head />
         </head>
         <body>
-            <header>
-                <a href="index.html">
-                    <img src="assets/kultur-logo-2-black.svg" alt="KulTur logo" />
-                    <h1>KULTUR</h1>
-                </a>
-                <nav>
-                    <ul>
-                        <li><a trans=home href="index.html">Početna</a></li>
-                        <li><a trans=about href="about.html">O nama</a></li>
-                        <li><a trans=projects href="projects.html">Projekti</a></li>
-                        <div class="spacer"></div>
-                        <li><a action=language></a></li>
-                        <li><a action=theme>
-                            <div class="theme-button">
-                                <img src="assets/kultur-logo-2-black.svg" alt="KulTur logo" />
-                            </div>
-                        </a></li>
-                    </ul>
-                </nav>
-            </header>
-            <main>
-                <article>
-                    {page}
-                </article>
-            </main>
+            <inject navigation />
+            <main>{page}</main>
         </body>
     </html>"""
 
@@ -64,7 +34,7 @@ class PostVariant():
 
     def filename(self, lang: str):
         nice_title = slugify(self.title)
-        return f"{self.post.raw_date}-{lang}-{nice_title}.html"
+        return f"{self.post.raw_date}-{lang}-{nice_title}"
 
 
 @dataclass
@@ -119,6 +89,11 @@ def process_file(path):
     return make_post(meta)
 
 
+def write_file(filepath: str, text: str):
+    with open(filepath, "w") as file:
+        file.writelines(text)
+
+
 def make_post(meta):
     author = meta["author"]
     post_date = datetime.strptime(meta["date"], "%Y-%m-%d").date()
@@ -142,10 +117,12 @@ def make_post(meta):
     for lang in post.variants:
         variant = post.variants[lang]
         variant.date = format_date(post.date, locale=lang)
-        variant.processed = dedent(f"""
-            <time>{variant.date}</time>
-            <cite>{post.author}</cite>
-            <h2>{variant.title}</h2>""") + variant.body
+        variant.processed = "<article>"
+        variant.processed += f"<time>{variant.date}</time>"
+        variant.processed += f"<cite>{post.author}</cite>"
+        variant.processed += f"<h2>{variant.title}</h2>"
+        variant.processed += variant.body
+        variant.processed += "</article>"
 
     return post
 
@@ -180,21 +157,35 @@ for post in processed:
         filename = variant.filename(lang)
         current["date-"+lang] = variant.date
         current["title-"+lang] = variant.title
-        current["url-"+lang] = "posts/" + filename
+        current["url-"+lang] = "posts/" + filename + ".html"
 
         outpath = path.join(root, filename)
-        with open(outpath, "w") as file:
-            file.writelines(page_wrapper(variant.processed))
+        write_file(outpath + ".src.html", page_wrapper(variant.processed))
 
     current["langs"] = langs
     post_list.append(current)
 
+postlist = """<ul class="postlist">"""
+processed.sort(key=lambda p: p.date)
+for post in processed:
+    lang = "hr"
+    variant = post.variants.get(lang)
+    if variant is None:
+        for l, v in post.variants.items():
+            lang = l
+            variant = v
+    postlist += "<li>"
+    postlist += f"""<time>{variant.date}</time>"""
+    postlist += f"""<a href="posts/{variant.filename(lang)}.html">{variant.title}</a>"""
+    postlist +="</li>"
+postlist += "</ul>"
+outpath = path.join(root, f"postlist.part.html")
+write_file(outpath, postlist)
+
 for lang, variant in latest_posts.items():
-    outpath = path.join(root, f"latest-{lang}.html")
-    with open(outpath, "w") as file:
-        file.writelines(page_wrapper(variant.processed))
+    outpath = path.join(root, f"latest-{lang}")
+    write_file(outpath + ".src.html", page_wrapper(variant.processed))
+    write_file(outpath + ".part.html", variant.processed)
 
 outpath = path.join(root, "index.json")
-with open(outpath, "w") as file:
-    file.writelines(dumps(post_list))
-
+write_file(outpath, dumps(post_list))

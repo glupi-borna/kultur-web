@@ -45,6 +45,7 @@ const translations = {
         home: "Početna",
         about: "O nama",
         projects: "Projekti",
+        posts: "Objave",
         language: "Jezik",
         color: "Boja",
         404: "Tražena stranica ne postoji!"
@@ -55,6 +56,7 @@ const translations = {
         home: "Home",
         about: "About us",
         projects: "Projects",
+        posts: "Posts",
         language: "Language",
         color: "Color",
         404: "The requested page does not exist!"
@@ -151,6 +153,12 @@ function listen_until_false(el, evt, cb) {
     el.addEventListener(evt, wrapped);
 }
 
+function remove_children(el) {
+    while (el.firstChild) {
+        el.firstChild.remove();
+    }
+}
+
 async function load_page_text(href) {
     try {
         let page = await fetch(href);
@@ -175,23 +183,65 @@ async function load_latest() {
     translate();
 }
 
-window.addEventListener("translated", () => {
-    if (location.href.endsWith("/index.html")) { load_latest(); }
-});
+function postlist_element(post) {
+    let li = document.createElement("li");
+    let time = document.createElement("time");
+    let a = document.createElement("a");
+
+    time.innerText = post["date-"+language];
+    a.innerText = post["title-"+language];
+    a.href = post["url-"+language];
+    li.append(time, a);
+    return li;
+}
+
+async function load_posts() {
+    let main = q("main");
+    if (!main) { throw new Error("Main is missing!"); }
+
+    let res = await fetch("posts/index.json");
+    let posts = await res.json();
+    posts.reverse();
+
+    let postlist = document.createElement("ul");
+    postlist.className = "postlist";
+    postlist.append(...posts.filter(p=>p.langs.includes(language)).map(postlist_element));
+
+    remove_children(main);
+    main.append(postlist);
+
+    prepare_links();
+    prepare_actions();
+    translate();
+}
 
 const load_overrides = {
-    "/index.html": load_latest
+    "/index.html": load_latest,
+    "/posts.html": load_posts
 };
+
+function get_load_override(href) {
+    let overrides = Object.keys(load_overrides);
+    for (let override of overrides) {
+        if (href.endsWith(override)) {
+            return load_overrides[override];
+        }
+    }
+    return null;
+}
+
+window.addEventListener("translated", () => {
+    let override = get_load_override(location.href);
+    if (override) { override(); }
+});
 
 async function load_page(href, no_push, force) {
     if (href == location && !force) { return; }
 
-    let overrides = Object.keys(load_overrides);
-    for (let override of overrides) {
-        if (href.endsWith(override)) {
-            if (!no_push) { history.pushState(null, "", href); }
-            return load_overrides[override]();
-        }
+    let override = get_load_override(href);
+    if (override) {
+        if (!no_push) { history.pushState(null, "", href); }
+        return override();
     }
 
     let main = q("main");

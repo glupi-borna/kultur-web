@@ -1,38 +1,41 @@
 <!DOCTYPE html>
     <html>
         <head>
-            <meta name="viewport" content="width=device-width, initial-scale=1" />
-            <link href="style.css" rel="stylesheet" />
-            <script src="main.js"></script>
+            <base href="..">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="style.css" rel="stylesheet" />
+<script src="main.js"></script>
+<noscript>
+    <style>
+        .JS { display: none; }
+    </style>
+</noscript>
+
         </head>
         <body>
             <header>
-                <a href="index.html">
+    <a href="index.html">
+        <img src="assets/kultur-logo-2-black.svg" alt="KulTur logo" />
+        <h1>KULTUR</h1>
+    </a>
+    <nav>
+        <ul>
+            <li class="link"><a trans=home href="index.html">Početna</a></li>
+            <li class="link"><a trans=about href="about.html">O nama</a></li>
+            <li class="link"><a trans=projects href="projects.html">Projekti</a></li>
+            <li class="link"><a trans=posts href="posts.html">Objave</a></li>
+            <div class="spacer"></div>
+            <li class="JS"><a action=language></a></li>
+            <li class="JS"><a action=theme>
+                <div class="theme-button">
                     <img src="assets/kultur-logo-2-black.svg" alt="KulTur logo" />
-                    <h1>KULTUR</h1>
-                </a>
-                <nav>
-                    <ul>
-                        <li><a trans=home href="index.html">Početna</a></li>
-                        <li><a trans=about href="about.html">O nama</a></li>
-                        <li><a trans=projects href="projects.html">Projekti</a></li>
-                        <div class="spacer"></div>
-                        <li><a action=language></a></li>
-                        <li><a action=theme>
-                            <div class="theme-button">
-                                <img src="assets/kultur-logo-2-black.svg" alt="KulTur logo" />
-                            </div>
-                        </a></li>
-                    </ul>
-                </nav>
-            </header>
-            <main>
-                <article>
-                    <time>Apr 27, 2022</time>
-<cite>Borna Lang</cite>
-<h2>First post</h2><p>Hello
-<p>This is my first post!
-                </article>
-            </main>
+                </div>
+            </a></li>
+        </ul>
+    </nav>
+</header>
+
+            <main><article><time>Apr 27, 2022</time><cite>Borna Lang</cite><h2>First post</h2><p>Hello
+<p>This is my first post!</article></main>
         </body>
     </html>
