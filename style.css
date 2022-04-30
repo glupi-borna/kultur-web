@@ -4,6 +4,7 @@ html {
     --link: #666;
     --img-filter: none;
     --img-filter-alt: invert();
+    --img-filter-link: brightness(40%);
 }
 
 html.alt {
@@ -12,6 +13,7 @@ html.alt {
     --link: #aaa;
     --img-filter: invert();
     --img-filter-alt: none;
+    --img-filter-link: brightness(66.6%);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -21,6 +23,7 @@ html.alt {
         --link: #aaa;
         --img-filter: invert();
         --img-filter-alt: none;
+        --img-filter-link: brightness(66.6%);
     }
 
     html.alt {
@@ -29,6 +32,7 @@ html.alt {
         --link: #666;
         --img-filter: none;
         --img-filter-alt: invert();
+        --img-filter-link: brightness(40%);
     }
 }
 
@@ -47,14 +51,24 @@ html, body {
     transition: background 0.25s, color 0.25s;
 }
 
+body {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: stretch;
+}
+
 body > * {
+    box-sizing: border-box;
+    width: 100%;
     max-width: 80ch;
     margin: 0 auto;
     animation: fadein .5s;
+    flex: 0 0 auto;
 }
 
 main {
     padding: 1rem;
+    flex: 1 1 100%;
 }
 
 a, button { cursor: pointer }
@@ -179,6 +193,7 @@ header nav ul a.current::after {
     content: "";
     top: 0; bottom: 0; right: -3px;
     border-right: 5px var(--fg) solid;
+    transition: border-right 0.125s;
 }
 
 .spacer { flex: 1 1 0; }
@@ -234,6 +249,10 @@ article time, article cite {
     color: var(--link);
 }
 
+article {
+    word-break: break-word;
+}
+
 article p, article h2 {
     margin-top: .5rem;
     margin-bottom: 1em;
@@ -242,17 +261,25 @@ article p, article h2 {
 article p { font-family: serif }
 
 article {
-    padding-left: .5rem;
+    padding-left: 1rem;
     border-left: 1px solid var(--link);
+    padding-bottom: .25rem;
 }
 
-article h2 { position: relative }
-article h2::before {
+article time, article cite, article h2 { position: relative }
+article time::before, article cite::before, article h2::before {
     content: "";
     position: absolute;
     content: "";
-    top: 0; bottom: 0; left: calc(-3px - .5rem);
+    top: 0; bottom: 0; left: calc(-3px - 1rem);
     border-left: 5px var(--fg) solid;
+    transition: border-left 0.125s;
+}
+
+article time::before, article cite::before {
+    border-width: 3px;
+    left: calc(-2px - 1rem);
+    border-color: var(--link);
 }
 
 .postlist {
@@ -275,4 +302,30 @@ article h2::before {
     flex: 0 0 75%;
     font-weight: bold;
     color: var(--link);
+}
+
+footer {
+    position: relative;
+    padding: 1rem;
+    right: 0; bottom: 0; left: 0;
+}
+
+footer ul {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    gap: .75rem;
+}
+
+footer img {
+    filter: var(--img-filter-link);
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+footer img:hover {
+    filter: var(--img-filter-alt);
 }

@@ -178,9 +178,7 @@ async function load_latest() {
     let text = await load_page_text(`posts/latest-${language}.html`);
     main.innerHTML = text;
     main.href = `posts/latest-${language}.html`;
-    prepare_links();
-    prepare_actions();
-    translate();
+    return true;
 }
 
 function postlist_element(post) {
@@ -191,6 +189,7 @@ function postlist_element(post) {
     time.innerText = post["date-"+language];
     a.innerText = post["title-"+language];
     a.href = post["url-"+language];
+    a.setAttribute("prepare", true);
     li.append(time, a);
     return li;
 }
@@ -210,29 +209,58 @@ async function load_posts() {
     remove_children(main);
     main.append(postlist);
 
-    prepare_links();
-    prepare_actions();
-    translate();
+    return true;
+}
+
+async function reload_post() {
+    let main = q("main");
+    if (!main) { throw new Error("Main is missing!"); }
+
+    let variants = Array.from(qa("article a[variant]"));
+    if (variants.length === 0) { return false; }
+
+    let target_variant = variants.find(v => v.getAttribute("variant") === language);
+    if (!target_variant) {
+        return load_page("index.html");
+    }
+
+    let text = await load_page_text(target_variant.href);
+    main.innerHTML = text;
+
+    return true;
 }
 
 const load_overrides = {
     "/index.html": load_latest,
-    "/posts.html": load_posts
+    "/posts.html": load_posts,
+    "/posts/*": reload_post
 };
 
 function get_load_override(href) {
     let overrides = Object.keys(load_overrides);
     for (let override of overrides) {
-        if (href.endsWith(override)) {
+        if (override.endsWith("*")) {
+            let or = override.substring(0, override.length-1);
+            if (href.includes(or)) {
+                return load_overrides[override];
+            }
+        } else if (href.endsWith(override)) {
             return load_overrides[override];
         }
     }
     return null;
 }
 
-window.addEventListener("translated", () => {
+window.addEventListener("translated", async () => {
     let override = get_load_override(location.href);
-    if (override) { override(); }
+    if (override) {
+        let succ = await override();
+        if (succ) {
+            prepare_links();
+            prepare_actions();
+            translate();
+        }
+    }
 });
 
 async function load_page(href, no_push, force) {
@@ -240,8 +268,17 @@ async function load_page(href, no_push, force) {
 
     let override = get_load_override(href);
     if (override) {
-        if (!no_push) { history.pushState(null, "", href); }
-        return override();
+        let success = await override();
+        if (success) {
+            if (!no_push) {
+                history.pushState(null, "", href);
+            }
+
+            prepare_links();
+            prepare_actions();
+            translate();
+            return true;
+        }
     }
 
     let main = q("main");
@@ -278,7 +315,7 @@ function prepare_actions() {
 }
 
 function prepare_links() {
-    let links = [...qa("a[href]"), ...qa("a[old-href]")];
+    let links = [...qa("a[prepare][href]"), ...qa("a[prepare][old-href]")];
     for (let link of links) {
         let href = link.href;
         if (href == "") { href = link.getAttribute("old-href"); }

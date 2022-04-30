@@ -10,8 +10,15 @@
     </style>
 </noscript>
 
+        <base href="file:///home/borna/Documents/projects/js/kultur/" />
         <script>
-            window.addEventListener("load", load_latest);
+            window.addEventListener("load", async () => {
+                if (await load_latest()) {
+                    prepare_links();
+                    prepare_actions();
+                    translate();
+                }
+            });
         </script>
     </head>
     <body>
@@ -22,10 +29,10 @@
     </a>
     <nav>
         <ul>
-            <li class="link"><a trans=home href="index.html">Početna</a></li>
-            <li class="link"><a trans=about href="about.html">O nama</a></li>
-            <li class="link"><a trans=projects href="projects.html">Projekti</a></li>
-            <li class="link"><a trans=posts href="posts.html">Objave</a></li>
+            <li class="link"><a prepare trans=home href="index.html">Početna</a></li>
+            <li class="link"><a prepare trans=about href="about.html">O nama</a></li>
+            <li class="link"><a prepare trans=projects href="projects.html">Projekti</a></li>
+            <li class="link"><a prepare trans=posts href="posts.html">Objave</a></li>
             <div class="spacer"></div>
             <li class="JS"><a action=language></a></li>
             <li class="JS"><a action=theme>
@@ -38,8 +45,19 @@
 </header>
 
         <main>
-            <article><time>30. tra 2022.</time><cite>Borna Lang</cite><h2>Druga objava</h2><p>Pozdrav
+            <article><ul hidden><a variant="hr" hidden href="posts/2022-04-30-hr-druga-objava.html">hr</a><a variant="en" hidden href="posts/2022-04-30-en-second-post.html">en</a></ul><time>30. tra 2022.</time><cite>Borna Lang</cite><h2>Druga objava</h2><p>Pozdrav
 <p>Ovo je moja druga objava!</article>
         </main>
+        <footer>
+    <ul>
+        <li><a noprepare href="https://www.instagram.com/kul.tur21/">
+            <img src="assets/insta.svg" alt="Instagram" />
+        </a></li>
+        <li><a noprepare href="https://m.facebook.com/KulTurNGO/">
+            <img src="assets/face.svg" alt="Facebook" />
+        </a></li>
+    </ul>
+</footer>
+
     </body>
 </html>

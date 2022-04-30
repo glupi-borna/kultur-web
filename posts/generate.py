@@ -20,6 +20,7 @@ def page_wrapper(page):
         <body>
             <inject navigation />
             <main>{page}</main>
+            <inject footer />
         </body>
     </html>"""
 
@@ -114,10 +115,17 @@ def make_post(meta):
             else:
                 post.variants[lang].title = val
 
+    variants_text = f"<ul hidden>"
+    for lang in post.variants:
+        variant = post.variants[lang]
+        variants_text += f"""<a variant="{lang}" hidden href="posts/{variant.filename(lang)}.html">{lang}</a>"""
+    variants_text += "</ul>"
+
     for lang in post.variants:
         variant = post.variants[lang]
         variant.date = format_date(post.date, locale=lang)
         variant.processed = "<article>"
+        variant.processed += f"{variants_text}"
         variant.processed += f"<time>{variant.date}</time>"
         variant.processed += f"<cite>{post.author}</cite>"
         variant.processed += f"<h2>{variant.title}</h2>"
@@ -176,7 +184,7 @@ for post in processed:
             variant = v
     postlist += "<li>"
     postlist += f"""<time>{variant.date}</time>"""
-    postlist += f"""<a href="posts/{variant.filename(lang)}.html">{variant.title}</a>"""
+    postlist += f"""<a prepare href="posts/{variant.filename(lang)}.html">{variant.title}</a>"""
     postlist +="</li>"
 postlist += "</ul>"
 outpath = path.join(root, f"postlist.part.html")

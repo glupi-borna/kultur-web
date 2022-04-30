@@ -3,7 +3,13 @@
     <head>
         <inject head />
         <script>
-            window.addEventListener("load", load_posts);
+            window.addEventListener("load", async () => {
+                if (await load_posts()) {
+                    prepare_links();
+                    prepare_actions();
+                    translate();
+                }
+            });
         </script>
     </head>
     <body>
@@ -12,4 +18,5 @@
             <inject postlist />
         </main>
     </body>
+    <inject footer />
 </html>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generator: Adobe Illustrator 24.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+
+<svg
+   version="1.1"
+   id="Layer_1"
+   x="0px"
+   y="0px"
+   viewBox="0 0 40 40"
+   style="enable-background:new 0 0 40 40;"
+   xml:space="preserve"
+   sodipodi:docname="face.svg"
+   inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"><defs
+   id="defs16" /><sodipodi:namedview
+   id="namedview14"
+   pagecolor="#505050"
+   bordercolor="#ffffff"
+   borderopacity="1"
+   inkscape:pageshadow="0"
+   inkscape:pageopacity="0"
+   inkscape:pagecheckerboard="1"
+   showgrid="false"
+   inkscape:zoom="5.6568543"
+   inkscape:rotation="-17"
+   inkscape:cx="27.35359"
+   inkscape:cy="16.741599"
+   inkscape:window-width="1461"
+   inkscape:window-height="1032"
+   inkscape:window-x="229"
+   inkscape:window-y="33"
+   inkscape:window-maximized="1"
+   inkscape:current-layer="Layer_1" />
+<style
+   type="text/css"
+   id="style2">
+	.st0{fill:url(#SVGID_1_);}
+	.st1{fill:#FFFFFF;}
+</style>
+<linearGradient
+   id="SVGID_1_"
+   gradientUnits="userSpaceOnUse"
+   x1="-277.375"
+   y1="406.6018"
+   x2="-277.375"
+   y2="407.5726"
+   gradientTransform="matrix(40 0 0 -39.7778 11115.001 16212.334)">
+	<stop
+   offset="0"
+   style="stop-color:#0062E0"
+   id="stop4" />
+	<stop
+   offset="1"
+   style="stop-color:#19AFFF"
+   id="stop6" />
+</linearGradient>
+<path
+   id="path9"
+   style="fill:#ffffff;fill-opacity:1"
+   class="st0"
+   d="M 20 0 C 9 0 0 9 0 20 C 2.3675024e-15 29.895931 7.3064839 38.09809 16.800781 39.802734 L 16.800781 25.599609 L 11.800781 25.599609 L 11.800781 20 L 16.800781 20 L 16.800781 15.599609 C 16.800781 10.599609 19.999609 7.8007812 24.599609 7.8007812 C 25.999609 7.8007813 27.6 7.9992188 29 8.1992188 L 29 13.300781 L 26.400391 13.300781 C 24.000391 13.300781 23.400391 14.499609 23.400391 16.099609 L 23.400391 20 L 28.699219 20 L 27.800781 25.599609 L 23.400391 25.599609 L 23.400391 39.78125 C 32.850743 38.041685 40 29.865144 40 20 C 40 9 31 0 20 0 z " />
+
+</svg>
