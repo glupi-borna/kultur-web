@@ -1,14 +1,12 @@
-date: 2022-04-27
+date: 2022-04-30
 author: Borna Lang
 
-title-hr: Prva objava
+title-hr: Test
 post-hr: """
-<p>Pozdrav
-<p>Ovo je moja prva objava!
+<p>Test
 """
 
-title-en: First post
+title-en: Test
 post-en: """
-<p>Hello
-<p>This is my first post!
+<p>Test
 """

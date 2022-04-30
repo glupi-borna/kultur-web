@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <base href="https://www.kultur21.hr/" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="style.css" rel="stylesheet" />
 <script src="main.js"></script>
 <noscript>
@@ -10,15 +11,8 @@
     </style>
 </noscript>
 
-        <base href="file:///home/borna/Documents/projects/js/kultur/" />
         <script>
-            window.addEventListener("load", async () => {
-                if (await load_latest()) {
-                    prepare_links();
-                    prepare_actions();
-                    translate();
-                }
-            });
+            window.addEventListener("load", load_latest);
         </script>
     </head>
     <body>
@@ -45,8 +39,7 @@
 </header>
 
         <main>
-            <article><ul hidden><a variant="hr" hidden href="posts/2022-04-30-hr-druga-objava.html">hr</a><a variant="en" hidden href="posts/2022-04-30-en-second-post.html">en</a></ul><time>30. tra 2022.</time><cite>Borna Lang</cite><h2>Druga objava</h2><p>Pozdrav
-<p>Ovo je moja druga objava!</article>
+            <article><ul hidden><a variant="hr" hidden href="posts/2022-04-30-hr-test.html">hr</a><a variant="en" hidden href="posts/2022-04-30-en-test.html">en</a></ul><time>30. tra 2022.</time><cite>Borna Lang</cite><h2>Test</h2><p>Test</article>
         </main>
         <footer>
     <ul>
