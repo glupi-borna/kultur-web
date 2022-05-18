@@ -1,0 +1,49 @@
+date: 2022-5-18
+author: Borna Lang
+exclude: true
+as_part: true
+no_wrapper: true
+fixed_filename: projects
+
+title-hr: Projekti
+post-hr: """
+<h2>Projekti</h2>
+
+<h3>Svi za kulturu, kultura za sve</h3>
+
+Cilj projekta je razvijanje nove i inovativne kulturne ponude kako bi se povećala kvaliteta kulturnog života građana te stvorilo pozitivno okruženje za umjetničko i kulturno stvaralaštvo svih građana. Projekt je sufinanciran od Grada Velike Gorice.
+
+<h3>Kultura u fokusu</h3>
+
+Program pozitivnog razvoja i prevencije društveno neprihvatljivih ponašanja djece i mladih je osmišljen da pomogne djeci i mladima u afirmaciji njihovih sposobnosti kroz edukativne i kreativne radionice i seminare te im na taj način pomogne u nošenju sa stresom i unaprijediti njihovo mentalno zdravlje.
+
+<h3>KulTur na Čiču</h3>
+
+Projekt revitalizacije jezera Čiče u Velikoj Gorici kroz kulturu.
+
+<h3>KulTur PubQuiz</h3>
+
+KulTur u suradnji s ugostiteljskim i kulturnim objektima organizira kvizove znanja iz raznih područja.
+
+"""
+
+title-en: Projects
+post-en: """
+<h2>Projects</h2>
+
+<h3>All for culture, culture for all</h3>
+
+The aim of the project is developing new and innovative cultural offerings in order to increase the quality of cultural life of citizens and create a positive environment for artistic and cultural creativity of citizens. The project is co-funded by the City of Velika Gorica.
+
+<h3>Culture in focus</h3>
+
+A program of positive development and prevention of socially unacceptable behaviors of children and youth is designed to help children and young people in affirming their abilities through educational and creative workshops and seminars and thus help them cope with stress and improve their mental health.
+
+<h3>KulTur on Čiče</h3>
+
+Revitalization project of Lake Čiče in Velika Gorica through cultural events.
+
+<h3>KulTur PubQuiz</h3>
+
+In cooperation with bars, cafes, pubs and cultural facilities, KulTur organizes knowledge quizzes from various fields.
+"""

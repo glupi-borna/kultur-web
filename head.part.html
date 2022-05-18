@@ -1,7 +1,10 @@
 <base href="https://www.kultur21.hr/" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="style.css" rel="stylesheet" />
+<script>
+    if (String(location).startsWith("file:///")) { document.querySelector("base").href = "."; }
+</script>
 <script src="main.js"></script>
+<link href="style.css" rel="stylesheet" />
 <noscript>
     <style>
         .JS { display: none; }

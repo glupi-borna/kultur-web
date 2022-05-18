@@ -1,0 +1,32 @@
+date: 2022-5-18
+author: Borna Lang
+exclude: true
+as_part: true
+no_wrapper: true
+fixed_filename: about
+
+title-hr: O nama
+post-hr: """
+<h2>O nama</h2>
+
+Udruga KulTur je neprofitna i nevladina organizacija osnovana 2021. godine u Velikoj Gorici s ciljem promoviranja, razvoja i istraživanja kulture i umjetnosti.
+
+Bavimo se kulturnim obrazovanjem, likovnim radionicama, edukacijama i seminarima. Organiziramo manifestacije i festivale kojima promoviramo mlade umjetnike te činimo kulturu pristupačnijom široj zajednici.
+
+Posebnu pažnju pridajemo obrazovanju i mentalnom zdravlju najranjivijih skupina.
+
+Ukoliko želite postati članom naše organizacije, obratite nam se putem e-maila.
+"""
+
+title-en: About us
+post-en: """
+<h2>About us</h2>
+
+KulTur is a non-profit NGO founded in 2021 in Velika Gorica. The aim of the organization is the promotion, exploration and research of culture and art.
+
+We are engaged in cultural enrichment, art workshops, education and seminars. We organize events and festivals to promote young artists and make culture more accessible to the wider community.
+
+We pay special attention to the education and mental health of the most vulnerable groups.
+
+If you want to become a member of our organization, contact us by e-mail.
+"""

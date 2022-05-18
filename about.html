@@ -3,8 +3,11 @@
     <head>
         <base href="https://www.kultur21.hr/" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="style.css" rel="stylesheet" />
+<script>
+    if (String(location).startsWith("file:///")) { document.querySelector("base").href = "."; }
+</script>
 <script src="main.js"></script>
+<link href="style.css" rel="stylesheet" />
 <noscript>
     <style>
         .JS { display: none; }
@@ -37,16 +40,56 @@
 
         <main>
             <article>
-                <h2 trans="404">UNDER CONSTRUCTION</h2>
+                <div part-trans="about">
+                    <h2>O nama</h2>
+<p>Udruga KulTur je neprofitna i nevladina organizacija osnovana 2021. godine u Velikoj Gorici s ciljem promoviranja, razvoja i istraživanja kulture i umjetnosti.
+<p>Bavimo se kulturnim obrazovanjem, likovnim radionicama, edukacijama i seminarima. Organiziramo manifestacije i festivale kojima promoviramo mlade umjetnike te činimo kulturu pristupačnijom široj zajednici.
+<p>Posebnu pažnju pridajemo obrazovanju i mentalnom zdravlju najranjivijih skupina.
+<p>Ukoliko želite postati članom naše organizacije, obratite nam se putem e-maila.
+                </div>
+                <br />
+                <div part-trans="donations">
+                    <h2>Doniranje</h2>
+<p>Ukoliko želite podržati rad udruge ili specifično neki od naših programa možete nas kontaktirati ili uplatu izvršiti na žiro račun udruge:
+<pre>
+HR1524020061101081581
+Erste&Steiermärkische Bank d. d.
+</pre>
+<p><i>Pravnim osobama, prema Zakonu o porezu na dobit (NN 177/04), čl.7., st.7., za iznos donacije do 2% iznosa prihoda prethodne godine smanjuje se porezna osnovica.</i>
+<p><i>Privatne osobe, prema Zakonu o porezu na dohodak (NN 177/04) čl.36., st.27. mogu uvećati osobni odbitak za iznos donacije doznačene na žiroračun, do visine 2% primitaka za koje je u prethodnoj god. podnesena godišnja porezna prijava i utvrđen godišnji porez na dohodak.</i>
+<p>Ako rad želite podržati materijalnom donacijom obratite nam se putem e-maila.
+<p>Hvala!
+                </div>
+                <br />
+                <div>
+                    <h2 trans=contact>Kontakt</h2>
+                    <div class="contactlist">
+                        <a href="mailto:kul.tur.vg.21@gmail.com">
+                            <img src="assets/mail.svg" alt="Email" />
+                            <span>kul.tur.vg.21@gmail.com</span>
+                        </a>
+                        <a href="https://www.instagram.com/kul.tur21/">
+                            <img src="assets/insta.svg" alt="Instagram" />
+                            <span>@kul.tur21</span>
+                        </a>
+                        <a href="https://m.facebook.com/KulTurNGO/">
+                            <img src="assets/face.svg" alt="Facebook" />
+                            <span>KulTurNGO</span>
+                        </a>
+                    </div>
+                </div>
             </article>
         </main>
 
         <footer>
     <ul>
-        <li><a noprepare href="https://www.instagram.com/kul.tur21/">
+        <li><a href="mailto:kul.tur.vg.21@gmail.com">
+            <img src="assets/mail.svg" alt="Email" />
+        </a></li>
+        <li><a href="https://www.instagram.com/kul.tur21/">
             <img src="assets/insta.svg" alt="Instagram" />
         </a></li>
-        <li><a noprepare href="https://m.facebook.com/KulTurNGO/">
+        <li><a href="https://m.facebook.com/KulTurNGO/">
             <img src="assets/face.svg" alt="Facebook" />
         </a></li>
     </ul>

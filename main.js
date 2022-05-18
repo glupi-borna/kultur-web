@@ -48,6 +48,7 @@ const translations = {
         posts: "Objave",
         language: "Jezik",
         color: "Boja",
+        contact: "Kontakt",
         404: "Tražena stranica ne postoji!"
     },
     en: {
@@ -59,6 +60,7 @@ const translations = {
         posts: "Posts",
         language: "Language",
         color: "Color",
+        contact: "Contact",
         404: "The requested page does not exist!"
     }
 };
@@ -156,6 +158,15 @@ function listen_until_false(el, evt, cb) {
 function remove_children(el) {
     while (el.firstChild) {
         el.firstChild.remove();
+    }
+}
+
+async function load_text(href) {
+    try {
+        let page = await fetch(href);
+        return await page.text();
+    } catch {
+        return null;
     }
 }
 
@@ -297,13 +308,21 @@ function translation_get(key) {
     return map[key];
 }
 
-function translate(els) {
+async function translate(els, part_els) {
     if (els == undefined) {
         els = qa("[trans]");
     }
 
+    if (part_els == undefined) {
+        part_els = qa("[part-trans]");
+    }
+
     for (let el of els) {
         el.innerText = translation_get(el.attributes.trans.value) || el.innerText;
+    }
+
+    for (let el of part_els) {
+        el.innerHTML = await load_text("posts/" + el.attributes["part-trans"].value + "-" + language + ".part.html");
     }
 }
 

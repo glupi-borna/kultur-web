@@ -71,6 +71,11 @@ main {
     flex: 1 1 100%;
 }
 
+a {
+    color: var(--link);
+    font-weight: bold;
+    text-decoration: none;
+}
 a, button { cursor: pointer }
 a:hover, button:hover { color: var(--fg) }
 
@@ -251,6 +256,7 @@ article time, article cite {
 
 article {
     word-break: break-word;
+    margin-bottom: 1rem;
 }
 
 article p, article h2 {
@@ -266,8 +272,8 @@ article {
     padding-bottom: .25rem;
 }
 
-article time, article cite, article h2 { position: relative }
-article time::before, article cite::before, article h2::before {
+article time, article cite, article h2, article h3 { position: relative }
+article time::before, article cite::before, article h2::before, article h3::before {
     content: "";
     position: absolute;
     content: "";
@@ -275,6 +281,7 @@ article time::before, article cite::before, article h2::before {
     border-left: 5px var(--fg) solid;
     transition: border-left 0.125s;
 }
+article h3::before { top: 25%; bottom: 25%; }
 
 article time::before, article cite::before {
     border-width: 3px;
@@ -320,7 +327,7 @@ footer ul {
     gap: .75rem;
 }
 
-footer img {
+footer img, .contactlist img {
     filter: var(--img-filter-link);
     width: 1.5rem;
     height: 1.5rem;
@@ -329,3 +336,17 @@ footer img {
 footer img:hover {
     filter: var(--img-filter-alt);
 }
+
+.contactlist {
+    display: flex;
+    flex-flow: column nowrap;
+}
+.contactlist a {
+    display: flex;
+    flex-flow: row nowrap;
+    max-width: max-content;
+    gap: .75em;
+    margin-bottom: .75em;
+    align-items: center
+}
+.contactlist a:hover img { filter: var(--img-filter-alt); }

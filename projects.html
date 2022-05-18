@@ -3,8 +3,11 @@
     <head>
         <base href="https://www.kultur21.hr/" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="style.css" rel="stylesheet" />
+<script>
+    if (String(location).startsWith("file:///")) { document.querySelector("base").href = "."; }
+</script>
 <script src="main.js"></script>
+<link href="style.css" rel="stylesheet" />
 <noscript>
     <style>
         .JS { display: none; }
@@ -36,16 +39,28 @@
 </header>
 
         <main>
-            <article>
-                <h2 trans="404">UNDER CONSTRUCTION</h2>
+            <article part-trans="projects">
+                <h2>Projekti</h2>
+<p><h3>Svi za kulturu, kultura za sve</h3>
+<p>Cilj projekta je razvijanje nove i inovativne kulturne ponude kako bi se povećala kvaliteta kulturnog života građana te stvorilo pozitivno okruženje za umjetničko i kulturno stvaralaštvo svih građana. Projekt je sufinanciran od Grada Velike Gorice.
+<p><h3>Kultura u fokusu</h3>
+<p>Program pozitivnog razvoja i prevencije društveno neprihvatljivih ponašanja djece i mladih je osmišljen da pomogne djeci i mladima u afirmaciji njihovih sposobnosti kroz edukativne i kreativne radionice i seminare te im na taj način pomogne u nošenju sa stresom i unaprijediti njihovo mentalno zdravlje.
+<p><h3>KulTur na Čiču</h3>
+<p>Projekt revitalizacije jezera Čiče u Velikoj Gorici kroz kulturu.
+<p><h3>KulTur PubQuiz</h3>
+<p>KulTur u suradnji s ugostiteljskim i kulturnim objektima organizira kvizove znanja iz raznih područja.
+<p>
             </article>
         </main>
         <footer>
     <ul>
-        <li><a noprepare href="https://www.instagram.com/kul.tur21/">
+        <li><a href="mailto:kul.tur.vg.21@gmail.com">
+            <img src="assets/mail.svg" alt="Email" />
+        </a></li>
+        <li><a href="https://www.instagram.com/kul.tur21/">
             <img src="assets/insta.svg" alt="Instagram" />
         </a></li>
-        <li><a noprepare href="https://m.facebook.com/KulTurNGO/">
+        <li><a href="https://m.facebook.com/KulTurNGO/">
             <img src="assets/face.svg" alt="Facebook" />
         </a></li>
     </ul>

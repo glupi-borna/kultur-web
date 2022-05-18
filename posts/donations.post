@@ -1,0 +1,40 @@
+date: 2022-5-18
+author: Borna Lang
+exclude: true
+as_part: true
+no_wrapper: true
+fixed_filename: donations
+
+title-hr: Donacije
+post-hr: """
+<h2>Doniranje</h2>
+
+Ukoliko želite podržati rad udruge ili specifično neki od naših programa možete nas kontaktirati ili uplatu izvršiti na žiro račun udruge:
+<pre>
+HR1524020061101081581
+Erste&Steiermärkische Bank d. d.
+</pre>
+
+<i>Pravnim osobama, prema Zakonu o porezu na dobit (NN 177/04), čl.7., st.7., za iznos donacije do 2% iznosa prihoda prethodne godine smanjuje se porezna osnovica.</i>
+
+<i>Privatne osobe, prema Zakonu o porezu na dohodak (NN 177/04) čl.36., st.27. mogu uvećati osobni odbitak za iznos donacije doznačene na žiroračun, do visine 2% primitaka za koje je u prethodnoj god. podnesena godišnja porezna prijava i utvrđen godišnji porez na dohodak.</i>
+
+Ako rad želite podržati materijalnom donacijom obratite nam se putem e-maila.
+
+Hvala!
+"""
+
+title-en: Donations
+post-en: """
+<h2>Donations</h2>
+
+If you want to support our work or a specific one of our programs, you can contact us or make a payment to the bank account of the organization:
+<pre>
+HR1524020061101081581
+Erste & Steiermärkische Bank d. d.
+</pre>
+
+If you want to support the work with a material donation, contact us by e-mail.
+
+Thank you!
+"""

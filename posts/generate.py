@@ -3,15 +3,33 @@
 from sys import argv
 from os import path
 from dataclasses import dataclass, field
+from typing import Optional
 from datetime import date, datetime
 from babel.dates import format_date
 from json import dumps
 from slugify import slugify
+from colorama import Fore, Style
 
 root = path.dirname(__file__)
 args = argv[1:]
 
-def page_wrapper(page):
+
+def perr(text: str):
+    print(f"{Fore.RED}{Style.BRIGHT}{text}{Fore.RESET}{Style.RESET_ALL}")
+
+
+def psucc(text: str):
+    print(f"{Fore.GREEN}{Style.BRIGHT}{text}{Fore.RESET}{Style.RESET_ALL}")
+
+
+def is_whitespace(text: str):
+    for ch in text:
+        if ch not in (" ", "\n", "\t"):
+            return False
+    return True
+
+
+def page_wrapper(page: str):
     return f"""<!DOCTYPE html>
     <html>
         <head>
@@ -34,15 +52,22 @@ class PostVariant():
     processed: str = ""
 
     def filename(self, lang: str):
+        if self.post.fixed_filename:
+            return f"{self.post.fixed_filename}-{lang}"
         nice_title = slugify(self.title)
         return f"{self.post.raw_date}-{lang}-{nice_title}"
 
 
 @dataclass
 class Post():
+    path: str
     author: str
     raw_date: str
     date: date
+    exclude: bool
+    as_part: bool
+    no_wrapper: bool
+    fixed_filename: str
     variants: dict[str, PostVariant] = field(default_factory=dict)
 
 
@@ -61,6 +86,7 @@ def extract_meta(lines, index):
 
     if value != '"""':
         return { key: value }, index
+    start_index = index
 
     value = ""
     count = len(lines)
@@ -69,12 +95,17 @@ def extract_meta(lines, index):
         line = lines[index]
         if line.startswith('"""'):
             break
+        if index == start_index+1:
+            if not line.startswith("<"):
+                line = f"<p>{line}"
+        if is_whitespace(line):
+            line = "<p>"
         value += line
 
     return { key: value.strip() }, index
 
 
-def process_file(path):
+def process_file(path: str):
     with open(path, "r") as file:
         lines = file.readlines()
 
@@ -87,7 +118,7 @@ def process_file(path):
             meta.update(extracted)
         index += 1
 
-    return make_post(meta)
+    return make_post(meta, path)
 
 
 def write_file(filepath: str, text: str):
@@ -95,11 +126,23 @@ def write_file(filepath: str, text: str):
         file.writelines(text)
 
 
-def make_post(meta):
+def make_post(meta: dict[str, str], path: str) -> Post:
     author = meta["author"]
     post_date = datetime.strptime(meta["date"], "%Y-%m-%d").date()
+    exclude = meta["exclude"].lower() == "true" if "exclude" in meta else False
+    as_part = meta["as_part"].lower() == "true" if "as_part" in meta else False
+    no_wrapper = meta["no_wrapper"].lower() == "true" if "no_wrapper" in meta else False
+    fixed_filename = meta["fixed_filename"] if "fixed_filename" in meta else ""
 
-    post = Post(author=author, date=post_date, raw_date=meta["date"])
+    post = Post(
+        path=path,
+        author=author,
+        date=post_date,
+        raw_date=meta["date"],
+        exclude=exclude,
+        as_part=as_part,
+        no_wrapper=no_wrapper,
+        fixed_filename=fixed_filename)
 
     for key, val in meta.items():
         if key.startswith("post"):
@@ -115,22 +158,30 @@ def make_post(meta):
             else:
                 post.variants[lang].title = val
 
-    variants_text = f"<ul hidden>"
-    for lang in post.variants:
-        variant = post.variants[lang]
-        variants_text += f"""<a variant="{lang}" hidden href="posts/{variant.filename(lang)}.html">{lang}</a>"""
-    variants_text += "</ul>"
+    if not post.exclude:
+        variants_text = f"<ul hidden>"
+        for lang in post.variants:
+            variant = post.variants[lang]
+            variants_text += f"""<a variant="{lang}" hidden href="posts/{variant.filename(lang)}.html">{lang}</a>"""
+        variants_text += "</ul>"
+    else:
+        variants_text = ""
 
-    for lang in post.variants:
-        variant = post.variants[lang]
-        variant.date = format_date(post.date, locale=lang)
-        variant.processed = "<article>"
-        variant.processed += f"{variants_text}"
-        variant.processed += f"<time>{variant.date}</time>"
-        variant.processed += f"<cite>{post.author}</cite>"
-        variant.processed += f"<h2>{variant.title}</h2>"
-        variant.processed += variant.body
-        variant.processed += "</article>"
+    if not post.no_wrapper:
+        for lang in post.variants:
+            variant = post.variants[lang]
+            variant.date = format_date(post.date, locale=lang)
+            variant.processed = "<article>"
+            variant.processed += f"{variants_text}"
+            variant.processed += f"<time>{variant.date}</time>"
+            variant.processed += f"<cite>{post.author}</cite>"
+            variant.processed += f"<h2>{variant.title}</h2>"
+            variant.processed += variant.body
+            variant.processed += "</article>"
+    else:
+        for lang in post.variants:
+            variant = post.variants[lang]
+            variant.processed += variant.body
 
     return post
 
@@ -155,11 +206,12 @@ for post in processed:
     current["date"] = post.raw_date
 
     for lang, variant in post.variants.items():
-        if lang not in latest_posts:
-            latest_posts[lang] = variant
-        else:
-            if variant.post.date > latest_posts[lang].post.date:
+        if not post.exclude:
+            if lang not in latest_posts:
                 latest_posts[lang] = variant
+            else:
+                if variant.post.date > latest_posts[lang].post.date:
+                    latest_posts[lang] = variant
 
         langs.append(lang)
         filename = variant.filename(lang)
@@ -168,24 +220,39 @@ for post in processed:
         current["url-"+lang] = "posts/" + filename + ".html"
 
         outpath = path.join(root, filename)
-        write_file(outpath + ".src.html", page_wrapper(variant.processed))
+        if not post.as_part:
+            write_file(outpath + ".src.html", page_wrapper(variant.processed))
+        else:
+            write_file(outpath + ".part.html", variant.processed)
 
     current["langs"] = langs
-    post_list.append(current)
+    if not post.exclude:
+        post_list.append(current)
 
 postlist = """<ul class="postlist">"""
 processed.sort(key=lambda p: p.date)
 for post in processed:
+    if post.exclude:
+        continue
+
     lang = "hr"
-    variant = post.variants.get(lang)
-    if variant is None:
+    var = post.variants.get(lang)
+
+    if var is None:
         for l, v in post.variants.items():
             lang = l
-            variant = v
+            var = v
+            break
+
+    if var is None:
+        perr(f"Warning: Post {post.path} has no variants!")
+        continue
+
     postlist += "<li>"
-    postlist += f"""<time>{variant.date}</time>"""
-    postlist += f"""<a prepare href="posts/{variant.filename(lang)}.html">{variant.title}</a>"""
+    postlist += f"""<time>{var.date}</time>"""
+    postlist += f"""<a prepare href="posts/{var.filename(lang)}.html">{var.title}</a>"""
     postlist +="</li>"
+
 postlist += "</ul>"
 outpath = path.join(root, f"postlist.part.html")
 write_file(outpath, postlist)
@@ -197,3 +264,4 @@ for lang, variant in latest_posts.items():
 
 outpath = path.join(root, "index.json")
 write_file(outpath, dumps(post_list))
+psucc(f"Processed {len(processed)} post(s), catalogued {len(post_list)} post(s).")
