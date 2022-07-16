@@ -1,5 +1,7 @@
 #!/bin/bash
 
+localserver &
+
 echo "Watching $PWD for changes..."
 while true; do
     mod="$(inotifywait -rq -e modify .)"
@@ -9,7 +11,9 @@ while true; do
         [[ "$file" =~ .*post ]] || \
         [[ "$file" =~ .*part.html ]] || \
         [[ "$file" =~ .*generate.py ]] || \
-        [[ "$file" =~ .*inject.py ]]
+        [[ "$file" =~ .*inject.py ]] || \
+        [[ "$file" =~ .*newsgen.py ]] || \
+        [[ "$file" =~ .*news.links ]]
     then
         echo "$file modified, rebuilding..."
         ./build.sh

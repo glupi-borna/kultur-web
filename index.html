@@ -4,8 +4,9 @@
         <base href="https://www.kultur21.hr/" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <script>
-    if (String(location).startsWith("file:///")) { document.querySelector("base").href = "."; }
+    if (location.hostname.includes("localhost")) { document.querySelector("base").href = location.origin; }
 </script>
+<link rel="icon" type="image/png" href="favicon.png">
 <script src="main.js"></script>
 <link href="style.css" rel="stylesheet" />
 <noscript>
@@ -42,7 +43,14 @@
 </header>
 
         <main>
-            <article><ul hidden><a variant="hr" hidden href="posts/2022-04-30-hr-test.html">hr</a><a variant="en" hidden href="posts/2022-04-30-en-test.html">en</a></ul><time>30. tra 2022.</time><cite>Borna Lang</cite><h2>Test</h2><p>Test</article>
+            <h2>Novosti</h2>
+<p><article> NOVOST 1 </article>
+<article> NOVOST 2 </article>
+<article> NOVOST 3 </article>
+            <article><ul hidden><a variant="hr" hidden href="posts/generated/2022-04-30-hr-kultur.html">hr</a><a variant="en" hidden href="posts/generated/2022-04-30-en-kultur.html">en</a></ul><time>30. tra 2022.</time><cite>KulTur</cite><h2>KulTur</h2><p>Udruga KulTur je neprofitna i nevladina organizacija osnovana 2021. godine u Velikoj Gorici s ciljem promoviranja, razvoja i istraživanja kulture i umjetnosti.
+<p>Bavimo se kulturnim obrazovanjem, likovnim radionicama, edukacijama i seminarima. Organiziramo manifestacije i festivale kojima promoviramo mlade umjetnike te činimo kulturu pristupačnijom široj zajednici.
+<p>Posebnu pažnju pridajemo obrazovanju i mentalnom zdravlju najranjivijih skupina.
+<p>Ukoliko želite postati članom naše organizacije, obratite nam se putem e-maila.</article>
         </main>
         <footer>
     <ul>

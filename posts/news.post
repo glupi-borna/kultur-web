@@ -1,0 +1,88 @@
+
+date: 2022-7-15
+author: Borna Lang
+exclude: true
+no_wrapper: true
+fixed_filename: news
+
+title-hr: Novosti
+post-hr: """
+<h2>Novosti</h2>
+
+<ul class="news">
+    
+        <li><figure>
+        <a href="http://www.vgdanas.hr/dogadanja/mladi-bendovi-ovu-vecer-ruze-tudmancem/">
+            <img src="assets/generated/road1010varboska.jpeg" alt="Mladi bendovi ovu večer ruže Tuđmancem">
+            <figcaption>Mladi bendovi ovu večer ruže Tuđmancem</figcaption>
+            <cite>VG danas</cite>
+        </a>
+        </figure></li>
+    
+        <li><figure>
+        <a href="http://www.vgdanas.hr/dogadanja/umjetnost-se-vratila-ljudima-kultur-radionice-potaknule-gradane-da-pronadu-umjetnika-u-sebi/">
+            <img src="assets/generated/whatsapp-image-2022-06-12-at-100940-am-5.jpeg" alt="Umjetnost se vratila ljudima: KulTur radionice potaknule građane da pronađu umjetnika u sebi">
+            <figcaption>Umjetnost se vratila ljudima: KulTur radionice potaknule građane da pronađu umjetnika u sebi</figcaption>
+            <cite>VG danas</cite>
+        </a>
+        </figure></li>
+    
+        <li><figure>
+        <a href="http://www.kronikevg.com/foto-zanimljivi-koncerti-mladih-glazbenika-donijeli-su-novi-zvuk-u-grad/">
+            <img src="assets/generated/Goricke-veceri-2022-KatD-2-of-9.jpeg" alt="FOTO Zanimljivi koncerti mladih glazbenika donijeli su novi zvuk u grad">
+            <figcaption>FOTO Zanimljivi koncerti mladih glazbenika donijeli su novi zvuk u grad</figcaption>
+            <cite>Kronike Velike Gorice</cite>
+        </a>
+        </figure></li>
+    
+        <li><figure>
+        <a href="http://www.vgdanas.hr/grad/ceka-nas-niz-glazbenih-poslastica-kojima-se-mozete-veseliti-tijekom-lipnja/">
+            <img src="assets/generated/glazbene-poslastice.jpeg" alt="Čeka nas niz glazbenih poslastica kojima se možete veseliti tijekom lipnja!">
+            <figcaption>Čeka nas niz glazbenih poslastica kojima se možete veseliti tijekom lipnja!</figcaption>
+            <cite>VG danas</cite>
+        </a>
+        </figure></li>
+    
+</ul>
+"""
+
+title-en: News
+post-en: """
+<h2>News</h2>
+
+<ul class="news">
+    
+        <li><figure>
+        <a href="http://www.vgdanas.hr/dogadanja/mladi-bendovi-ovu-vecer-ruze-tudmancem/">
+            <img src="assets/generated/road1010varboska.jpeg" alt="Mladi bendovi ovu večer ruže Tuđmancem">
+            <figcaption>Mladi bendovi ovu večer ruže Tuđmancem</figcaption>
+            <cite>VG danas</cite>
+        </a>
+        </figure></li>
+    
+        <li><figure>
+        <a href="http://www.vgdanas.hr/dogadanja/umjetnost-se-vratila-ljudima-kultur-radionice-potaknule-gradane-da-pronadu-umjetnika-u-sebi/">
+            <img src="assets/generated/whatsapp-image-2022-06-12-at-100940-am-5.jpeg" alt="Umjetnost se vratila ljudima: KulTur radionice potaknule građane da pronađu umjetnika u sebi">
+            <figcaption>Umjetnost se vratila ljudima: KulTur radionice potaknule građane da pronađu umjetnika u sebi</figcaption>
+            <cite>VG danas</cite>
+        </a>
+        </figure></li>
+    
+        <li><figure>
+        <a href="http://www.kronikevg.com/foto-zanimljivi-koncerti-mladih-glazbenika-donijeli-su-novi-zvuk-u-grad/">
+            <img src="assets/generated/Goricke-veceri-2022-KatD-2-of-9.jpeg" alt="FOTO Zanimljivi koncerti mladih glazbenika donijeli su novi zvuk u grad">
+            <figcaption>FOTO Zanimljivi koncerti mladih glazbenika donijeli su novi zvuk u grad</figcaption>
+            <cite>Kronike Velike Gorice</cite>
+        </a>
+        </figure></li>
+    
+        <li><figure>
+        <a href="http://www.vgdanas.hr/grad/ceka-nas-niz-glazbenih-poslastica-kojima-se-mozete-veseliti-tijekom-lipnja/">
+            <img src="assets/generated/glazbene-poslastice.jpeg" alt="Čeka nas niz glazbenih poslastica kojima se možete veseliti tijekom lipnja!">
+            <figcaption>Čeka nas niz glazbenih poslastica kojima se možete veseliti tijekom lipnja!</figcaption>
+            <cite>VG danas</cite>
+        </a>
+        </figure></li>
+    
+</ul>
+"""

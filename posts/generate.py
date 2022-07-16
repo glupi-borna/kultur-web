@@ -1,7 +1,7 @@
 #!/usr/bin/env python3.9
 
 from sys import argv
-from os import path
+from os import path, mkdir
 from dataclasses import dataclass, field
 from typing import Optional
 from datetime import date, datetime
@@ -13,6 +13,9 @@ from colorama import Fore, Style
 root = path.dirname(__file__)
 args = argv[1:]
 
+
+if not path.exists(path.join(root, "generated")):
+    mkdir(path.join(root, "generated"))
 
 def perr(text: str):
     print(f"{Fore.RED}{Style.BRIGHT}{text}{Fore.RESET}{Style.RESET_ALL}")
@@ -33,7 +36,7 @@ def page_wrapper(page: str):
     return f"""<!DOCTYPE html>
     <html>
         <head>
-            <inject post-head />
+            <inject head />
         </head>
         <body>
             <inject navigation />
@@ -162,7 +165,7 @@ def make_post(meta: dict[str, str], path: str) -> Post:
         variants_text = f"<ul hidden>"
         for lang in post.variants:
             variant = post.variants[lang]
-            variants_text += f"""<a variant="{lang}" hidden href="posts/{variant.filename(lang)}.html">{lang}</a>"""
+            variants_text += f"""<a variant="{lang}" hidden href="posts/generated/{variant.filename(lang)}.html">{lang}</a>"""
         variants_text += "</ul>"
     else:
         variants_text = ""
@@ -217,9 +220,9 @@ for post in processed:
         filename = variant.filename(lang)
         current["date-"+lang] = variant.date
         current["title-"+lang] = variant.title
-        current["url-"+lang] = "posts/" + filename + ".html"
+        current["url-"+lang] = "posts/generated/" + filename + ".html"
 
-        outpath = path.join(root, filename)
+        outpath = path.join(root, "generated", filename)
         if not post.as_part:
             write_file(outpath + ".src.html", page_wrapper(variant.processed))
         else:
@@ -250,15 +253,15 @@ for post in processed:
 
     postlist += "<li>"
     postlist += f"""<time>{var.date}</time>"""
-    postlist += f"""<a prepare href="posts/{var.filename(lang)}.html">{var.title}</a>"""
+    postlist += f"""<a prepare href="posts/generated/{var.filename(lang)}.html">{var.title}</a>"""
     postlist +="</li>"
 
 postlist += "</ul>"
-outpath = path.join(root, f"postlist.part.html")
+outpath = path.join(root, "generated", "postlist.part.html")
 write_file(outpath, postlist)
 
 for lang, variant in latest_posts.items():
-    outpath = path.join(root, f"latest-{lang}")
+    outpath = path.join(root, "generated", f"latest-{lang}")
     write_file(outpath + ".src.html", page_wrapper(variant.processed))
     write_file(outpath + ".part.html", variant.processed)
 

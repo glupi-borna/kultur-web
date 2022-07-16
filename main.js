@@ -1,3 +1,12 @@
+if (location.href.includes("localhost")) {
+    const ws = new WebSocket("ws://localhost:8080");
+    ws.onmessage = (msg) => {
+        console.log(`WS: ${msg}`);
+        if (msg.data == 'refresh') window.location.reload();
+    };
+    document.baseURI = location.host;
+}
+
 window.onload = main;
 window.onpopstate = () => load_page(location.href, true, true);
 let q = document.querySelector.bind(document);
@@ -176,8 +185,10 @@ async function load_page_text(href) {
         let page_text = await page.text();
         let main_text = page_text.match(/<main>([\w\W]+?)<\/main>/)[1];
         return main_text;
-    } catch {
+    } catch (err) {
+        console.log(err);
         return `
+            <p>${href}</p>
             <p trans=404>Tražena stranica ne postoji!</p>
         `;
     }
@@ -186,9 +197,10 @@ async function load_page_text(href) {
 async function load_latest() {
     let main = q("main");
     if (!main) { throw new Error("Main is missing!"); }
-    let text = await load_page_text(`posts/latest-${language}.html`);
-    main.innerHTML = text;
-    main.href = `posts/latest-${language}.html`;
+    let latest = await load_page_text(`posts/generated/latest-${language}.html`);
+    let news = await load_page_text(`posts/generated/news-${language}.html`);
+    main.innerHTML = news + latest;
+    main.href = `posts/generated/latest-${language}.html`;
     return true;
 }
 
@@ -244,7 +256,7 @@ async function reload_post() {
 const load_overrides = {
     "/index.html": load_latest,
     "/posts.html": load_posts,
-    "/posts/*": reload_post
+    "/posts/generated/*": reload_post
 };
 
 function get_load_override(href) {
@@ -322,7 +334,7 @@ async function translate(els, part_els) {
     }
 
     for (let el of part_els) {
-        el.innerHTML = await load_text("posts/" + el.attributes["part-trans"].value + "-" + language + ".part.html");
+        el.innerHTML = await load_text("posts/generated/" + el.attributes["part-trans"].value + "-" + language + ".part.html");
     }
 }
 
