@@ -197,10 +197,10 @@ async function load_page_text(href) {
 async function load_latest() {
     let main = q("main");
     if (!main) { throw new Error("Main is missing!"); }
-    let latest = await load_page_text(`posts/generated/latest-${language}.html`);
-    let news = await load_page_text(`posts/generated/news-${language}.html`);
+    let latest = await load_page_text(`/posts/generated/latest-${language}.html`);
+    let news = await load_page_text(`/posts/generated/news-${language}.html`);
     main.innerHTML = news + latest;
-    main.href = `posts/generated/latest-${language}.html`;
+    main.href = `/posts/generated/latest-${language}.html`;
     return true;
 }
 
@@ -334,7 +334,7 @@ async function translate(els, part_els) {
     }
 
     for (let el of part_els) {
-        el.innerHTML = await load_text("posts/generated/" + el.attributes["part-trans"].value + "-" + language + ".part.html");
+        el.innerHTML = await load_text("/posts/generated/" + el.attributes["part-trans"].value + "-" + language + ".part.html");
     }
 }
 

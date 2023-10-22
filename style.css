@@ -133,13 +133,13 @@ header nav ul a {
     color: var(--link);
 }
 
-@media (max-width: 600px) {
+/*@media (max-width: 600px) {
     header nav ul a {
         font-size: .75em;
     }
-}
+}*/
 
-@media (max-width: 400px) {
+@media (max-width: 500px) {
     header nav ul li.link a {
         writing-mode: tb-rl;
         padding: .5rem 0;

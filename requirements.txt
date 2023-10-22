@@ -1,0 +1,6 @@
+python-slugify
+colorama
+babel
+Pillow
+PyOpenGraph
+unicode

@@ -5,7 +5,7 @@ from PIL import Image
 from io import BytesIO
 from json import dumps, loads
 from colorama import Fore, Style
-import opengraph.opengraph as opengraph
+from opengraph import OpenGraph
 import requests
 
 root = path.dirname(__file__)
@@ -96,7 +96,7 @@ def process_news():
 
     for url in urls:
         if url not in cache_data:
-            meta = opengraph.OpenGraph(url=url)
+            meta = OpenGraph(url=url)
 
             if not meta.is_valid():
                 perr(f"URL '{url}' cannot be parsed with opengraph!")
@@ -125,7 +125,7 @@ def process_news():
             img_data = BytesIO()
             img.save(img_path, "JPEG", optimize=True, quality=70)
 
-        out += news_element(href, title, f"assets/generated/{img_name}", site)
+        out += news_element(href, title, f"/assets/generated/{img_name}", site)
 
     write_file(CACHE_PATH, dumps(cache_data))
     write_file(POST_PATH, wrap_output(out))

@@ -165,7 +165,7 @@ def make_post(meta: dict[str, str], path: str) -> Post:
         variants_text = f"<ul hidden>"
         for lang in post.variants:
             variant = post.variants[lang]
-            variants_text += f"""<a variant="{lang}" hidden href="posts/generated/{variant.filename(lang)}.html">{lang}</a>"""
+            variants_text += f"""<a variant="{lang}" hidden href="/posts/generated/{variant.filename(lang)}.html">{lang}</a>"""
         variants_text += "</ul>"
     else:
         variants_text = ""
